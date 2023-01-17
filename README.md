@@ -109,3 +109,48 @@ fn main() {
 
 ---
 ### 2. 제어문(Control Flow)
+
+##### 2.1 if 표현식
+- `if` 식의 조건과 관련된 코드블럭을 갈래(arm)라고 함
+- 다른 Language와 동일하지만 조건 문에 괄호를 필요로 하지 않는다
+- 코드의 조건은 반드시 `bool` 값이어야 한다.
+
+##### 2.1.1 let 구문에서 if 사용하기
+> 코드 블럭은 마지막에 위치한 표현식을 산출하며 숫자는 그 자체로 표현식이다.
+- `if`가 표현식이므로, `let` 구문의 우측에 사용할 수 있음
+```rust
+let condition = true;
+let number = if condition {
+    5
+} else {
+    6
+};
+```
+
+##### 2.2 반복문과 반복(Repetition with Loops)
+##### 2.2.1 `loop`
+
+- `loop`은 그만두라고 명시하여 알려주기 전까지 코드블럭을 반복해서 수행한다
+```rust
+loop {
+    println!("again!");
+}
+```
+
+##### 2.2.2 `while`
+```rust
+let mut number = 3;
+while number != 0 {
+    println!("{}!", number);
+    number = number - 1;
+}
+```
+
+##### 2.2.3 `for`
+```rust
+let a = [10, 20, 30, 40, 50];
+
+for element in a.iter() {
+    println!("the value is: {}", element);
+}
+```

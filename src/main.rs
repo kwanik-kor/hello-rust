@@ -35,6 +35,9 @@ fn main() {
 
     let x = plus_one(5);
     println!("The value of x is: {}", x);
+
+    // 8. Control flow
+    check_control_flow();
 }
 
 fn another_function(x: i32) {
@@ -58,4 +61,32 @@ fn function_with_return() -> i32 {
 
 fn plus_one(x: i32) -> i32 {
     x + 1
+}
+
+fn check_control_flow() {
+    // if conditions
+    let number = 3;
+
+    if number < 5 {
+        println!("condition was true!");
+    } else if number > 7 {
+        println!("condition was false!");
+    } else {
+        println!("condition is available");
+    }
+
+    let other_number = if number == 3 {
+        5
+    } else {
+        6
+    };
+    println!("other number is : {}", other_number);
+
+    // repetition
+
+    // loop {
+    //     println!("again!");
+    // }
+
+
 }
