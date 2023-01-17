@@ -2,9 +2,9 @@
 
 > Repository to learn basic concept of Rust
 
-### Keywords
+## Keywords
 
-#### 1. 변수(Variables)
+### 1. 변수(Variables)
 ##### 1.1 불변성(Mutability)
 - 기본 변수는 **불변성**을 갖는다.
   - 불변성으로 선언한 값을 변경하고자할 경우 Compile Error를 발생시킨다.
@@ -73,3 +73,39 @@ let spaces = spaces.len(); // We don't need 'spaces_str' or 'spaces_len'
   - 배열은 모든 요소가 같은 타입이어야 함.
   - 고정된 길이를 가짐
   - 데이터를 `heap` 보다 `stack`에 할당하는 것을 원할 때 혹은, 고정된 요소를 갖는다고 확신하는 경우에 사용할 것
+
+##### 1.5 함수(Function)
+> Rust의 함수는 `snake_case`를 사용한다.
+
+##### 1.5.1 함수 매개변수(Parameters)
+
+- **전달인자(arguments)**
+  - 함수로 전달되는 상수
+- **매개변수(parameters)**
+  - 함수는 고유한 부분인 특별한 변수 매개변수를 가짐
+- 함수 선언부에는 반드시 각 매개변수의 타입을 정의해야 함
+
+##### 1.5.2 구문과 표현식(Statements and Expressions)
+
+- **구문(Statements)**
+  - 어떤 명령들의 나열로 값을 반환하지 않는 어떤 동작을 수행
+- **표현식(Expressions)**
+  - 표현식은 결과값을 산출해냄
+- 구문을 사용해서는 다른 변수에 값을 대입할 수 없음
+
+```rust
+fn main() {
+  let x = 5;
+  let y = {
+    let x = 3;
+    x + 1 // 표현식의 종결부에는 세미콜론을 사용하지 않는다.
+  };
+}
+```
+
+##### 1.5.3 반환 값을 갖는 함수
+- `return`을 이용해서 반환할 수 잇으나, 암묵적으로 마지막 표현식을 반환함
+- 정의된 유형의 값을 함수가 반환하지 않는 경우 `()` 비어있는 튜플을 반환함
+
+---
+### 2. 제어문(Control Flow)
