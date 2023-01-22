@@ -1,92 +1,44 @@
-use std::io;
-
 fn main() {
-    // 1. Mutable Variants
-    let mut x = 5;
-    println!("The value of x is : {}", x);
-    x = 6;
-    println!("The value of x is : {}", x);
-
-    // 2. Constants
-    const MAX_POINTS: u32 = 100_000;
-    println!("constant : {}", MAX_POINTS);
-
-    // 3. Shadowing
-    let spaces = "     ";
-    println!("Spaces: {}", spaces);
-    let spaces = spaces.len();
-    println!("Spaces: {}", spaces);
-
-    // 4. Data types
-    let tuple: (i32, f64, u8) = (500, 6.4, 1);
-    // destructing
-    let (x, y, z) = tuple;
-    println!("The value of y is : {}", y);
-    println!("The value of z is : {}", tuple.2);
-
-    // 5. Functions
-    another_function(5);
-
-    // 6. Statements & Expression
-    check_expressions();
-
-    // 7. Function with return
-    println!("The value of function is : {}", function_with_return());
-
-    let x = plus_one(5);
-    println!("The value of x is: {}", x);
-
-    // 8. Control flow
-    check_control_flow();
+    study_how_to_use_struct();
 }
 
-fn another_function(x: i32) {
-    println!("The value of x is: {}", x);
+fn study_how_to_use_struct() {
+    let mut user1 = build_user(String::from("rhksdlr134@naver.com"), String::from("rhksldr134"));
+
+    user1.email = String::from("kwanigi2005@gmail.com");
+
+    let user2 = update_user_email_username(user1, String::from("foo@email.com"), String::from("foo"));
+
+    println!("User2's email is : {}", user2.email);
 }
 
-fn check_expressions() {
-    let x = 5;
-
-    let y = {
-        let x = 3;
-        x + 1
-    };
-
-    println!("The value of y is : {}", y);
-}
-
-fn function_with_return() -> i32 {
-    10
-}
-
-fn plus_one(x: i32) -> i32 {
-    x + 1
-}
-
-fn check_control_flow() {
-    // if conditions
-    let number = 3;
-
-    if number < 5 {
-        println!("condition was true!");
-    } else if number > 7 {
-        println!("condition was false!");
-    } else {
-        println!("condition is available");
+fn build_user(email: String, username: String) -> User {
+    User {
+        email,
+        username,
+        active: true,
+        sign_in_count: 1,
     }
-
-    let other_number = if number == 3 {
-        5
-    } else {
-        6
-    };
-    println!("other number is : {}", other_number);
-
-    // repetition
-
-    // loop {
-    //     println!("again!");
-    // }
-
-
 }
+
+fn update_user_email_username(user: User, email: String, username: String) -> User {
+    User {
+        email,
+        username,
+        ..user
+    }
+}
+
+struct User {
+    username: String,
+    email: String,
+    sign_in_count: u64,
+    active: bool,
+}
+
+// Tuple Struct
+struct Color(i32, i32, i32);
+struct Point(i32, i32, i32);
+
+// Struct without fields
+struct AlwaysEqual;

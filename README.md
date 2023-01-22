@@ -154,3 +154,77 @@ for element in a.iter() {
     println!("the value is: {}", element);
 }
 ```
+
+---
+### 3. 구조체(Struct)
+> 튜플(Tuple)과 유사한 형태이지만, Java Class의 필드와 마찬가지로, 각 구성요소들을 명명할 수 있으므로
+> 값이 의미하는 바를 명확하게 할 수 있다.
+
+```rust
+struct User {
+  username: String,
+  email: String,
+  sign_in_count: u64,
+  active: bool,
+}
+```
+
+##### 3.1 Rust 구조체 기본
+- 구조체를 사용하기 위해서는 인스턴스(Instance)를 생성해야 함
+  - 구조체에 정의한 필드 순서와 정의하는 순서가 일치하지 않아도 됨
+  - `instance.field` 형태로 참조할 수 있음
+  - 변경 가능한 `instance`를 생성하기 위해서는 `mut` 키워드 넣기
+  - 특정 필드만 변경할 수 있도록 Rust는 허용하지 않음 
+```rust
+let user = User {
+    username: String::from("rhksdlr134"),
+    email: String::from("rhksdlr134@naver.com"),
+    active: true,
+    sign_in_count: 1
+}
+```
+
+##### 3.2 필드 초기화 축약법(field init shortcut)
+- 변수명과 구조체의 필드명이 같다면, 필드명을 번거롭게 다시 작성하지 않아도 됨
+
+```rust
+fn build_user(email: String, username: String) -> User {
+  User {
+    email,
+    username,
+    active: true,
+    sign_in_count: 1,
+  }
+}
+```
+
+##### 3.3 구조체 갱신법(Struct Update Syntax)
+- 존재하는 인스턴스에서 기존 값의 대부분은 재사용하고, 몇몇 값만 바꿔 새 인스턴스를 생성하는 법
+
+```rust
+fn update_user(user: User, email: String, username: String) -> User {
+  User {
+    email,
+    username,
+    ..user
+  }
+}
+```
+
+##### 3.4 튜플 구조체(Tuple Struct)
+- 구조체는 이름을 가지지만, 구조체의 필드는 튜플과 같이 이름을 갖지 않는 형태
+```rust
+struct Color(i32, i32, i32);
+struct Point(i32, i32, i32);
+
+let black = Color(0, 0, 0);
+let origin = Point(0, 0, 0);
+```
+
+##### 3.5 필드가 없는 유사 유닛 구조체(Unit-Like Structs without any fields)
+- 유닛 타입인 `()`와 비슷하게 동작하여, `유사 유닛 구조체(unit-like sturct)`로 불림
+- 특정한 타입의 트레잇(Trait)으로 구현해야 
+
+##### 3.6 구조체의 소유권(Ownership)
+- `&str` 이 아닌 `String`을 사용하는 이유는 구조체 전체가 유효한 동안 구조체가 그 데이터를 소유하게 하고자 함
+- `라이프타임(lifetime)`을 사용해야만 구조체가 소유권이 없는 데이터의 참조를 저장할 수 있게됨
