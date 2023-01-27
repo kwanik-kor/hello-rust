@@ -253,3 +253,70 @@ impl Rectangle {
    - `self` 파라미터를 갖지 않는 함수를 정의하는 것으로, 해당 함수가 해당 구조체와 연관되어 있기 때문이다.
    - 함께 동작할 구조체의 인스턴스를 가지고 있지 않음
    - 구조체 이름과 함께 `::` 문법을 이용해 호출할 수 있음
+
+---
+### 4. 열거형과 패턴 매칭(Enums and Pattern Matching)
+> Rust의 열거형은 F#, OCaml, Haskell과 같은 함수형 언어의 **대수 데이터 타입**과 가장 비슷하다.
+
+```rust
+// variants of enumeration
+enum IpAddrKind {
+  V4,
+  V6,
+}
+```
+
+##### 4.1 열거형 정의 방식
+- Enum의 각 variant는 다른 타입과 다른 양의 연관된 데이터를 가질 수 있음
+- 어떤 종류의 데이터라도 넣을 수 있음
+
+```rust
+enum IpAddr {
+  V4(String),
+  V6(String),
+}
+```
+
+```rust
+enum IpAddr {
+  V4(u8, u8, u8, u8),
+  V6(String)
+}
+```
+
+##### 4.2 다양한 유형의 타입이 포함된 열거형
+
+- 구조체와 마찬가지로 열거형에도 메소드를 정의할 수 있음
+
+```rust
+enum Message {
+  Quit,
+  Move { x: i32, y: i32 },
+  Write(String),
+  ChangeColor(i32, i32, i32),
+}
+
+impl Message {
+  fn call(&self) {
+    
+  }
+}
+
+let m = Message::Write(String::from("hello"));
+m.call();
+```
+
+##### 4.3 Option을 통한 열거형 배우기
+
+- Rust에는 null이 없음
+- 이로 인해 값의 존재 혹은 부재의 개념을 표현할 수 있는 열거형인 `Option<T>`이 만들어짐
+- 기본적으로 포함되어 있어, 명시적으로 가져오지 않아도 사용할 수 있음
+  - `Option`의 variants인 `Some`과 `None`도 바로 사용할 수 있음
+  - `None`을 사용할 경우 어떤 타입을 사용할 것인지 알려줘야 함
+
+```rust
+let some_number = Some(5);
+let some_string = Some("string");
+
+let absent_number: Option<i32> = None;
+```
