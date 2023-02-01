@@ -320,3 +320,6 @@ let some_string = Some("string");
 
 let absent_number: Option<i32> = None;
 ```
+
+---
+### 5. match 흐름 제어 연산자
